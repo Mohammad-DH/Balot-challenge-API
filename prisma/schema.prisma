@@ -61,8 +61,8 @@ model Reward {
   Points Int
   Rank Int
 
-  User User     @relation(fields: [UserId], references: [Id])
-  UserId String 
+  User User?     @relation(fields: [UserId], references: [Id])
+  UserId String?
 
   ChallengeId Int
   Challenge Challenge @relation(fields: [ChallengeId], references: [Id])  

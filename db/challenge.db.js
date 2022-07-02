@@ -13,7 +13,6 @@ const GetAllChallenges = async () => {
 
 const CreateNewChallenge = async ({
   Name,
-  CreatedTime,
   Start,
   End,
   RestaurantId,
@@ -23,7 +22,7 @@ const CreateNewChallenge = async ({
     Data = prisma.Challenge.create({
       data: {
         Name,
-        CreatedTime,
+        CreatedTime: new Date(),
         Start,
         End,
         RestaurantId,
