@@ -1,0 +1,76 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = "mysql://root:syncmaster1898@localhost:3306/chef_challenge"
+  // url      = env("DATABASE_URL")
+}
+
+model User {
+  Id String @id @unique
+  Points Int @default(0)
+
+  Rewards Reward[]
+  Records Record[]
+
+  Challenges UserAndChallenge[]
+}
+
+model Challenge {
+  Id Int @id @default(autoincrement()) @unique
+  Name String 
+  CreatedTime DateTime
+  Start DateTime
+  End DateTime
+
+  RestaurantId Int
+  Restaurant Restaurant @relation(fields: [RestaurantId], references: [Id])
+
+  Rewards Reward[]
+  Records Record[]
+
+  Users UserAndChallenge[]
+}
+
+model UserAndChallenge {
+  User       User     @relation(fields: [UserId], references: [Id])
+  UserId    String
+
+  Challenge   Challenge @relation(fields: [ChallengeId], references: [Id])
+  ChallengeId Int
+
+  @@id([UserId, ChallengeId])
+}
+
+model Record{
+  Id Int @id @default(autoincrement()) @unique
+  UserId String
+  User User @relation(fields: [UserId], references: [Id])
+  Nickname String
+  ChallengeId Int
+  Challenge Challenge @relation(fields: [ChallengeId], references: [Id])
+  Score String
+  SpentTime String
+}
+
+model Reward {
+  Id Int @id @default(autoincrement()) @unique
+  Name String
+  Points Int
+  Rank Int
+
+  User User     @relation(fields: [UserId], references: [Id])
+  UserId String 
+
+  ChallengeId Int
+  Challenge Challenge @relation(fields: [ChallengeId], references: [Id])  
+} 
+
+model Restaurant {
+  Id Int @id @default(autoincrement()) @unique
+  Name String
+  
+  challenges Challenge[]
+} 
