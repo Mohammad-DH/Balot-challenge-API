@@ -1,4 +1,5 @@
 const { AdminChallengeDB } = require("../../db");
+const schedule = require("node-schedule");
 
 const CreateNewChallenge = async (obj) => {
   let NewChallenge = await AdminChallengeDB.CreateNewChallenge(obj);
@@ -6,6 +7,19 @@ const CreateNewChallenge = async (obj) => {
   if (NewChallenge.success === false) {
     throw new Error(NewChallenge.error);
   } else {
+    schedule.scheduleJob(NewChallenge.Data.Start, async () => {
+      await AdminChallengeDB.ActiveChallenge({
+        Id: NewChallenge.Data.Id,
+        Active: true,
+      });
+    });
+
+    schedule.scheduleJob(NewChallenge.Data.End, async () => {
+      await AdminChallengeDB.ActiveChallenge({
+        Id: NewChallenge.Data.Id,
+        Active: false,
+      });
+    });
     return NewChallenge.Data;
   }
 };
