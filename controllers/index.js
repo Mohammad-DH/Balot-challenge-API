@@ -1,9 +1,19 @@
-const User = require("./user.controller");
-const Restaurant = require("./restaurant.controller");
-const Challenge = require("./challenges.controller");
+const AdminUser = require("./admin/user.controller");
+const AdminRestaurant = require("./admin/restaurant.controller");
+const AdminChallenge = require("./admin/challenges.controller");
+const AdminAuthentication = require("./admin/authentication.controller");
+
+const PublicUser = require("./public/user.controller");
+const PublicRestaurant = require("./public/restaurant.controller");
+const PublicChallenge = require("./public/challenges.controller");
 
 module.exports = {
-  User,
-  Restaurant,
-  Challenge,
+  AdminUser,
+  AdminRestaurant,
+  AdminChallenge,
+  AdminAuthentication,
+
+  PublicUser,
+  PublicRestaurant,
+  PublicChallenge,
 };

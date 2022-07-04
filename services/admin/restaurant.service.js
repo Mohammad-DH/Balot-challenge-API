@@ -1,17 +1,7 @@
-const { RestaurantDB } = require("../db");
-
-const GetAllRestaurants = async () => {
-  let AllRestaurants = await RestaurantDB.GetAllRestaurants();
-
-  if (AllRestaurants.success === false) {
-    throw new Error(AllRestaurants.error);
-  } else {
-    return AllRestaurants.Data;
-  }
-};
+const { AdminRestaurantDB } = require("../../db");
 
 const CreateNewRestaurant = async (obj) => {
-  let NewRestaurant = await RestaurantDB.CreateNewRestaurant(obj);
+  let NewRestaurant = await AdminRestaurantDB.CreateNewRestaurant(obj);
 
   if (NewRestaurant.success === false) {
     throw new Error(NewRestaurant.error);
@@ -21,7 +11,7 @@ const CreateNewRestaurant = async (obj) => {
 };
 
 const RemoveRestaurant = async (obj) => {
-  let RemovedRestaurant = await RestaurantDB.RemoveRestaurant(obj);
+  let RemovedRestaurant = await AdminRestaurantDB.RemoveRestaurant(obj);
 
   if (RemovedRestaurant.success === false) {
     throw new Error(RemovedRestaurant.error);
@@ -31,7 +21,7 @@ const RemoveRestaurant = async (obj) => {
 };
 
 const UpdateRestaurant = async (obj) => {
-  let UpdatedRestaurant = await RestaurantDB.UpdateRestaurant(obj);
+  let UpdatedRestaurant = await AdminRestaurantDB.UpdateRestaurant(obj);
 
   if (UpdatedRestaurant.success === false) {
     throw new Error(UpdatedRestaurant.error);
@@ -41,7 +31,6 @@ const UpdateRestaurant = async (obj) => {
 };
 
 module.exports = {
-  GetAllRestaurants,
   CreateNewRestaurant,
   RemoveRestaurant,
   UpdateRestaurant,

@@ -1,15 +1,5 @@
-// const { PrismaClient } = require("@prisma/client");
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
-
-const GetAllChallenges = async () => {
-  try {
-    Data = prisma.Challenge.findMany();
-    return { Data, success: true };
-  } catch (error) {
-    return { Data, success: false, error };
-  }
-};
 
 const CreateNewChallenge = async ({
   Name,
@@ -19,7 +9,7 @@ const CreateNewChallenge = async ({
   Rewards,
 }) => {
   try {
-    Data = prisma.Challenge.create({
+    let Data = await prisma.Challenge.create({
       data: {
         Name,
         CreatedTime: new Date(),
@@ -33,39 +23,31 @@ const CreateNewChallenge = async ({
     });
     return { Data, success: true };
   } catch (error) {
-    return { Data, success: false, error };
+    return { success: false, error };
   }
 };
 
 const RemoveChallenge = async ({ Id }) => {
   try {
-    Data = prisma.Challenge.delete({
+    let Data = await prisma.Challenge.delete({
       where: {
         Id,
       },
     });
     return { Data, success: true };
   } catch (error) {
-    return { Data, success: false, error };
+    return { success: false, error };
   }
 };
 
-const UpdateChallenge = async ({
-  Id,
-  Name,
-  CreatedTime,
-  Start,
-  End,
-  RestaurantId,
-}) => {
+const UpdateChallenge = async ({ Id, Name, Start, End, RestaurantId }) => {
   try {
-    Data = prisma.Challenge.update({
+    let Data = await prisma.Challenge.update({
       where: {
         Id,
       },
       data: {
         Name,
-        CreatedTime,
         Start,
         End,
         RestaurantId,
@@ -73,13 +55,28 @@ const UpdateChallenge = async ({
     });
     return { Data, success: true };
   } catch (error) {
-    return { Data, success: false, error };
+    return { success: false, error };
+  }
+};
+const ActiveChallenge = async ({ Id, Active }) => {
+  try {
+    let Data = await prisma.Challenge.update({
+      where: {
+        Id,
+      },
+      data: {
+        Active,
+      },
+    });
+    return { Data, success: true };
+  } catch (error) {
+    return { success: false, error };
   }
 };
 
 module.exports = {
-  GetAllChallenges,
   CreateNewChallenge,
   RemoveChallenge,
   UpdateChallenge,
+  ActiveChallenge,
 };

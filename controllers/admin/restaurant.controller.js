@@ -1,20 +1,9 @@
-const { RestaurantService } = require("../services");
-
-const AllRestaurants = async (req, res, next) => {
-  try {
-    let data = await RestaurantService.GetAllRestaurants();
-    res.status(200).json({ data });
-    next();
-  } catch (e) {
-    console.log(e.message);
-    res.sendStatus(500) && next(e);
-  }
-};
+const { AdminRestaurantService } = require("../../services");
 
 // Need Authentication
 const AddRestaurant = async (req, res, next) => {
   try {
-    let data = await RestaurantService.CreateNewRestaurant(req.body);
+    let data = await AdminRestaurantService.CreateNewRestaurant(req.body);
     res.status(200).json({ data });
     next();
   } catch (e) {
@@ -26,7 +15,7 @@ const AddRestaurant = async (req, res, next) => {
 // Need Authentication
 const RemoveRestaurant = async (req, res, next) => {
   try {
-    let data = await RestaurantService.RemoveRestaurant(req.body);
+    let data = await AdminRestaurantService.RemoveRestaurant(req.body);
 
     res.status(200).json({ data });
     next();
@@ -39,7 +28,7 @@ const RemoveRestaurant = async (req, res, next) => {
 // Need Authentication
 const UpdateRestaurant = async (req, res, next) => {
   try {
-    let data = await RestaurantService.UpdateRestaurant(req.body);
+    let data = await AdminRestaurantService.UpdateRestaurant(req.body);
     res.status(200).json({ data });
     next();
   } catch (e) {
@@ -49,7 +38,6 @@ const UpdateRestaurant = async (req, res, next) => {
 };
 
 module.exports = {
-  AllRestaurants,
   AddRestaurant,
   RemoveRestaurant,
   UpdateRestaurant,

@@ -1,10 +1,8 @@
-const { UserService } = require("../services");
-
-const { CreateNewUser } = UserService;
+const { PublicUserService } = require("../../services");
 
 const AddUser = async (req, res, next) => {
   try {
-    let User = await CreateNewUser();
+    let User = await PublicUserService.CreateNewUser();
     res
       .status(200)
       .json({ data: { User }, message: "New User Has Been Created" });

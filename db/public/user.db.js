@@ -7,14 +7,14 @@ const InsertANewUser = async () => {
   let Data;
 
   try {
-    Data = prisma.User.create({
+    Data = await prisma.User.create({
       data: {
         Id: hash,
       },
     });
     return { Data, success: true };
   } catch (error) {
-    return { Data, success: false, error };
+    return { success: false, error };
   }
 };
 

@@ -1,7 +1,7 @@
-const { UserDB } = require("../db");
+const { PublicUserDB } = require("../../db");
 
 const CreateNewUser = async () => {
-  let NewUser = await UserDB.InsertANewUser();
+  let NewUser = await PublicUserDB.InsertANewUser();
   if (NewUser.success === false) {
     throw new Error(NewUser.error);
   } else {

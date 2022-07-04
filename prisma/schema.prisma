@@ -8,6 +8,13 @@ datasource db {
   // url      = env("DATABASE_URL")
 }
 
+model Admin {
+  Id Int @id @default(autoincrement()) @unique
+  UserName String
+  Password String
+  Active Boolean @default(false)
+}
+
 model User {
   Id String @id @unique
   Points Int @default(0)
@@ -24,6 +31,7 @@ model Challenge {
   CreatedTime DateTime
   Start DateTime
   End DateTime
+  Active Boolean @default(false)
 
   RestaurantId Int
   Restaurant Restaurant @relation(fields: [RestaurantId], references: [Id])
@@ -46,13 +54,14 @@ model UserAndChallenge {
 
 model Record{
   Id Int @id @default(autoincrement()) @unique
-  UserId String
+  CreatedTime DateTime
+  UserId String 
   User User @relation(fields: [UserId], references: [Id])
   Nickname String
   ChallengeId Int
   Challenge Challenge @relation(fields: [ChallengeId], references: [Id])
-  Score String
-  SpentTime String
+  Score Int @default(0)
+  SpentTime Int @default(0)
 }
 
 model Reward {
@@ -65,7 +74,7 @@ model Reward {
   UserId String?
 
   ChallengeId Int
-  Challenge Challenge @relation(fields: [ChallengeId], references: [Id])  
+  Challenge Challenge @relation(fields: [ChallengeId], references: [Id] , onDelete: Cascade, onUpdate: Cascade)  
 } 
 
 model Restaurant {

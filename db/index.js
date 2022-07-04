@@ -1,9 +1,21 @@
-const UserDB = require("./user.db");
-const RestaurantDB = require("./restaurant.db");
-const ChallengeDB = require("./challenge.db");
+const AdminUserDB = require("./admin/user.db");
+const AdminRestaurantDB = require("./admin/restaurant.db");
+const AdminChallengeDB = require("./admin/challenge.db");
+const AdminAuthenticationDB = require("./admin/authentication.db");
+
+const PublicUserDB = require("./public/user.db");
+const PublicRestaurantDB = require("./public/restaurant.db");
+const PublicChallengeDB = require("./public/challenge.db");
+const PublicRecordDB = require("./public/record.db");
 
 module.exports = {
-  UserDB,
-  RestaurantDB,
-  ChallengeDB,
+  AdminUserDB,
+  AdminRestaurantDB,
+  AdminChallengeDB,
+  AdminAuthenticationDB,
+
+  PublicUserDB,
+  PublicRestaurantDB,
+  PublicChallengeDB,
+  PublicRecordDB,
 };

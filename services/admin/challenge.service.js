@@ -1,17 +1,7 @@
-const { ChallengeDB } = require("../db");
-
-const GetAllChallenges = async () => {
-  let AllChallenges = await ChallengeDB.GetAllChallenges();
-
-  if (AllChallenges.success === false) {
-    throw new Error(AllChallenges.error);
-  } else {
-    return AllChallenges.Data;
-  }
-};
+const { AdminChallengeDB } = require("../../db");
 
 const CreateNewChallenge = async (obj) => {
-  let NewChallenge = await ChallengeDB.CreateNewChallenge(obj);
+  let NewChallenge = await AdminChallengeDB.CreateNewChallenge(obj);
 
   if (NewChallenge.success === false) {
     throw new Error(NewChallenge.error);
@@ -21,7 +11,7 @@ const CreateNewChallenge = async (obj) => {
 };
 
 const RemoveChallenge = async (obj) => {
-  let RemovedChallenge = await ChallengeDB.RemoveChallenge(obj);
+  let RemovedChallenge = await AdminChallengeDB.RemoveChallenge(obj);
 
   if (RemovedChallenge.success === false) {
     throw new Error(RemovedChallenge.error);
@@ -31,7 +21,7 @@ const RemoveChallenge = async (obj) => {
 };
 
 const UpdateChallenge = async (obj) => {
-  let UpdatedChallenge = await ChallengeDB.UpdateChallenge(obj);
+  let UpdatedChallenge = await AdminChallengeDB.UpdateChallenge(obj);
 
   if (UpdatedChallenge.success === false) {
     throw new Error(UpdatedChallenge.error);
@@ -39,10 +29,19 @@ const UpdateChallenge = async (obj) => {
     return UpdatedChallenge.Data;
   }
 };
+const ActiveChallenge = async (obj) => {
+  let Challenge = await AdminChallengeDB.ActiveChallenge(obj);
+
+  if (Challenge.success === false) {
+    throw new Error(Challenge.error);
+  } else {
+    return Challenge.Data;
+  }
+};
 
 module.exports = {
-  GetAllChallenges,
   CreateNewChallenge,
   RemoveChallenge,
   UpdateChallenge,
+  ActiveChallenge,
 };
