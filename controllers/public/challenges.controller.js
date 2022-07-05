@@ -11,9 +11,9 @@ const AllChallenges = async (req, res, next) => {
   }
 };
 
-const StartAChallenges = async (req, res, next) => {
+const StartAChallenge = async (req, res, next) => {
   try {
-    let data = await PublicChallengeService.StartAChallenges(req.body);
+    let data = await PublicChallengeService.StartAChallenge(req.body);
     res.status(200).json({ data });
     next();
   } catch (e) {
@@ -22,9 +22,19 @@ const StartAChallenges = async (req, res, next) => {
   }
 };
 
-const SubmitAChallenges = async (req, res, next) => {
+const SubmitAChallenge = async (req, res, next) => {
   try {
-    let data = await PublicChallengeService.SubmitAChallenges(req.body);
+    let data = await PublicChallengeService.SubmitAChallenge(req.body);
+    res.status(200).json({ data });
+    next();
+  } catch (e) {
+    console.log(e.message);
+    res.sendStatus(500) && next(e);
+  }
+};
+const RecordsOfAChallenge = async (req, res, next) => {
+  try {
+    let data = await PublicChallengeService.RecordsOfAChallenge(req.body);
     res.status(200).json({ data });
     next();
   } catch (e) {
@@ -35,6 +45,7 @@ const SubmitAChallenges = async (req, res, next) => {
 
 module.exports = {
   AllChallenges,
-  StartAChallenges,
-  SubmitAChallenges,
+  StartAChallenge,
+  SubmitAChallenge,
+  RecordsOfAChallenge,
 };
