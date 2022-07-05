@@ -61,30 +61,17 @@ const SubmitAChallenge = async (obj) => {
 };
 
 const RecordsOfAChallenge = async (obj) => {
-  let Records = await PublicChallengeDB.TwentyRecordsOfAChallenge(obj);
+  let Twenty = await PublicChallengeDB.TwentyRecordsOfAChallenge(obj);
 
-  let targetRecord = await PublicChallengeDB.RecordOfAUserInAChallenge(obj);
+  let Records = await PublicChallengeDB.RecordsOfAChallenge(obj);
 
-  let sameAsTargetRecord = await PublicChallengeDB.ListOfUserWithTheSameScore(obj.ChallengeId, targetRecord.Data.Score);
+  let target = Records.Data.find((o) => o.UserId === obj.UserId);
 
-  let AboveTargetRecord = await PublicChallengeDB.RecordsAboveAUserInAChallenge(obj.ChallengeId, targetRecord.Data.Score, sameAsTargetRecord.Data);
+  let Around = await PublicChallengeDB.RecordsOfUsersAroundInAChallenge(obj.ChallengeId, parseInt(target.num));
 
-  while (AboveTargetRecord.Data[0].UserId !== obj.UserId) {
-    console.log("looop");
-    AboveTargetRecord.Data.shift();
-  }
-  console.log("*************START***************");
-  console.log(AboveTargetRecord.Data[0].UserId === obj.UserId);
-  console.log(obj.UserId);
-  console.log(AboveTargetRecord);
-  console.log("**************END**************");
-  let UnderTargetRecord = await PublicChallengeDB.RecordsUnderAUserInAChallenge(obj.ChallengeId, targetRecord.Data.Score, sameAsTargetRecord.Data);
+  let Data = { Twenty, Around };
 
-  if (Records.success === false) {
-    throw new Error(Records.error);
-  } else {
-    return Records.Data;
-  }
+  return Data;
 };
 
 module.exports = {

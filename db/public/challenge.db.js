@@ -26,94 +26,57 @@ const IsChallengeActive = async ({ Id }) => {
   }
 };
 
-const TwentyRecordsOfAChallenge = async ({ ChallengeId }) => {
+const RecordsOfAChallenge = async ({ ChallengeId }) => {
   try {
-    Data = await prisma.Record.findMany({
-      where: {
-        ChallengeId,
-      },
-      skip: 0,
-      take: 20,
-      orderBy: [
-        {
-          Score: "desc",
-        },
-      ],
-    });
-    return { Data, success: true };
-  } catch (error) {
-    return { success: false, error };
-  }
-};
-const RecordOfAUserInAChallenge = async ({ ChallengeId, UserId }) => {
-  try {
-    Data = await prisma.Record.findFirst({
-      where: {
-        ChallengeId,
-        UserId,
-      },
-    });
-    return { Data, success: true };
-  } catch (error) {
-    return { success: false, error };
-  }
-};
-const ListOfUserWithTheSameScore = async (ChallengeId, Score) => {
-  try {
-    Data = await prisma.Record.count({
-      where: {
-        ChallengeId,
-        Score,
-      },
-      // select: {
-      //   Id: true,
-      // },
-    });
+    Data = await prisma.$queryRaw`
+      select    
+      UserId,
+      CreatedTime,
+      Score,
+      CAST(ROW_NUMBER() OVER ( order by Score desc, CreatedTime asc ) AS CHAR) as num
+
+      from Record
+      where ChallengeId = ${ChallengeId} 
+      order by Score desc , CreatedTime asc ;
+    `;
+
     return { Data, success: true };
   } catch (error) {
     return { success: false, error };
   }
 };
 
-const RecordsAboveAUserInAChallenge = async (ChallengeId, Score, plus) => {
+const TwentyRecordsOfAChallenge = async ({ ChallengeId }) => {
   try {
     Data = await prisma.Record.findMany({
       where: {
         ChallengeId,
-        Score: {
-          gte: Score,
-        },
       },
-      orderBy: [
-        {
-          Score: "asc",
-        },
-      ],
+      orderBy: {
+        Score: "desc",
+      },
       skip: 0,
-      take: plus + 2,
+      take: 20,
     });
+
     return { Data, success: true };
   } catch (error) {
     return { success: false, error };
   }
 };
-const RecordsUnderAUserInAChallenge = async (ChallengeId, Score, plus) => {
+const RecordsOfUsersAroundInAChallenge = async (ChallengeId, num) => {
   try {
     Data = await prisma.Record.findMany({
       where: {
         ChallengeId,
-        Score: {
-          lte: Score,
-        },
       },
-      orderBy: [
-        {
-          Score: "desc",
-        },
-      ],
-      skip: 0,
-      take: plus + 2,
+      orderBy: {
+        Score: "desc",
+      },
+      skip: num - 3,
+      take: 5,
     });
+
     return { Data, success: true };
   } catch (error) {
     return { success: false, error };
@@ -123,9 +86,7 @@ const RecordsUnderAUserInAChallenge = async (ChallengeId, Score, plus) => {
 module.exports = {
   GetAllChallenges,
   IsChallengeActive,
+  RecordsOfAChallenge,
   TwentyRecordsOfAChallenge,
-  RecordOfAUserInAChallenge,
-  ListOfUserWithTheSameScore,
-  RecordsAboveAUserInAChallenge,
-  RecordsUnderAUserInAChallenge,
+  RecordsOfUsersAroundInAChallenge,
 };

@@ -3,7 +3,7 @@ const AdminRestaurantService = require("./admin/restaurant.service");
 const AdminChallengeService = require("./admin/challenge.service");
 const AdminAuthentication = require("./admin/authentication.service");
 
-const PublicUserService = require("./admin/user.service");
+const PublicUserService = require("./public/user.service");
 const PublicRestaurantService = require("./public/restaurant.service");
 const PublicChallengeService = require("./public/challenge.service");
 
