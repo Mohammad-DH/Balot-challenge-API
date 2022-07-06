@@ -1,4 +1,4 @@
-[![made by](https://img.shields.io/badge/Made%20BY-Mohammad%20DH-%230073ff)]()
+b[![made by](https://img.shields.io/badge/Made%20BY-Mohammad%20DH-%230073ff)]()
 [![express](https://img.shields.io/badge/Express.js-4.16.3-%2319a648)]()
 [![node](https://img.shields.io/badge/node.js-4.16.3-%2340ff80)]()
 [![node](https://img.shields.io/badge/prisma-4.0.0-%23ff6be4)]()
@@ -7,7 +7,7 @@
 
 # Balot challenge API
 
-#### this is a interview project with the goal of making a simple game server.
+      this is a interview project with the goal of making a simple game server.
 
 ---
 
