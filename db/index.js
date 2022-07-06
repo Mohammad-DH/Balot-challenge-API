@@ -2,6 +2,8 @@ const AdminUserDB = require("./admin/user.db");
 const AdminRestaurantDB = require("./admin/restaurant.db");
 const AdminChallengeDB = require("./admin/challenge.db");
 const AdminAuthenticationDB = require("./admin/authentication.db");
+const AdminRecordDB = require("./admin/record.db");
+const AdminRewardDB = require("./admin/reward.db");
 
 const PublicUserDB = require("./public/user.db");
 const PublicRestaurantDB = require("./public/restaurant.db");
@@ -13,6 +15,8 @@ module.exports = {
   AdminRestaurantDB,
   AdminChallengeDB,
   AdminAuthenticationDB,
+  AdminRecordDB,
+  AdminRewardDB,
 
   PublicUserDB,
   PublicRestaurantDB,

@@ -61,17 +61,37 @@ const SubmitAChallenge = async (obj) => {
 };
 
 const RecordsOfAChallenge = async (obj) => {
-  let Twenty = await PublicChallengeDB.TwentyRecordsOfAChallenge(obj);
+  let Twenty = await PublicRecordDB.TwentyRecordsOfAChallenge(obj);
 
-  let Records = await PublicChallengeDB.RecordsOfAChallenge(obj);
+  let Records = await PublicRecordDB.RecordsOfAChallenge(obj);
 
   let target = Records.Data.find((o) => o.UserId === obj.UserId);
 
-  let Around = await PublicChallengeDB.RecordsOfUsersAroundInAChallenge(obj.ChallengeId, parseInt(target.num));
+  let Around = await PublicRecordDB.RecordsOfUsersAroundInAChallenge(obj.ChallengeId, parseInt(target.num));
 
   let Data = { Twenty, Around };
 
   return Data;
+};
+
+const ThisWeekRecordsOfAChallenge = async (obj) => {
+  var curr = new Date();
+  var first = curr.getDate() - curr.getDay();
+  var last = first + 6;
+
+  var FirstDay = new Date(curr.setDate(first));
+  var LastDay = new Date(curr.setDate(last));
+
+  console.log(FirstDay);
+  console.log(LastDay);
+
+  let Records = await PublicRecordDB.ThisWeekRecordsOfAChallenge(obj.ChallengeId, FirstDay, LastDay);
+
+  if (Records.success === false) {
+    throw new Error(Records.error);
+  } else {
+    return Records.Data;
+  }
 };
 
 module.exports = {
@@ -79,4 +99,5 @@ module.exports = {
   StartAChallenge,
   SubmitAChallenge,
   RecordsOfAChallenge,
+  ThisWeekRecordsOfAChallenge,
 };

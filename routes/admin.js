@@ -1,11 +1,7 @@
 const express = require("express");
 const auth = require("../middlewares/authentication.middlewares.js");
 
-const {
-  AdminUser,
-  AdminRestaurant,
-  AdminChallenge,
-} = require("../controllers");
+const { AdminUser, AdminRestaurant, AdminChallenge } = require("../controllers");
 
 const router = express.Router();
 

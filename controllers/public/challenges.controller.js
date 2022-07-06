@@ -42,10 +42,21 @@ const RecordsOfAChallenge = async (req, res, next) => {
     res.sendStatus(500) && next(e);
   }
 };
+const ThisWeekRecordsOfAChallenge = async (req, res, next) => {
+  try {
+    let data = await PublicChallengeService.ThisWeekRecordsOfAChallenge(req.body);
+    res.status(200).json({ data });
+    next();
+  } catch (e) {
+    console.log(e.message);
+    res.sendStatus(500) && next(e);
+  }
+};
 
 module.exports = {
   AllChallenges,
   StartAChallenge,
   SubmitAChallenge,
   RecordsOfAChallenge,
+  ThisWeekRecordsOfAChallenge,
 };

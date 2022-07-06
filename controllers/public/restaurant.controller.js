@@ -1,8 +1,8 @@
-const { RestaurantService } = require("../../services");
+const { PublicRestaurantService } = require("../../services");
 
 const AllRestaurants = async (req, res, next) => {
   try {
-    let data = await RestaurantService.GetAllRestaurants();
+    let data = await PublicRestaurantService.GetAllRestaurants();
     res.status(200).json({ data });
     next();
   } catch (e) {

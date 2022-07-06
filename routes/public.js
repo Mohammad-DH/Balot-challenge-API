@@ -12,5 +12,6 @@ router.get("/challenge", PublicChallenge.AllChallenges);
 router.post("/challenge/start", PublicChallenge.StartAChallenge);
 router.post("/challenge/submit", PublicChallenge.SubmitAChallenge);
 router.post("/challenge/records", PublicChallenge.RecordsOfAChallenge);
+router.post("/challenge/records/week", PublicChallenge.ThisWeekRecordsOfAChallenge);
 
 module.exports = router;

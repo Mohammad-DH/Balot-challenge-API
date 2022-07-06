@@ -1,13 +1,7 @@
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
-const CreateNewChallenge = async ({
-  Name,
-  Start,
-  End,
-  RestaurantId,
-  Rewards,
-}) => {
+const CreateNewChallenge = async ({ Name, Start, End, RestaurantId, Rewards }) => {
   try {
     let Data = await prisma.Challenge.create({
       data: {
@@ -58,6 +52,7 @@ const UpdateChallenge = async ({ Id, Name, Start, End, RestaurantId }) => {
     return { success: false, error };
   }
 };
+
 const ActiveChallenge = async ({ Id, Active }) => {
   try {
     let Data = await prisma.Challenge.update({
@@ -74,9 +69,26 @@ const ActiveChallenge = async ({ Id, Active }) => {
   }
 };
 
+const ChallengeRewards = async ({ Id }) => {
+  try {
+    let Data = await prisma.Challenge.findFirst({
+      where: {
+        Id,
+      },
+      select: {
+        Rewards: true,
+      },
+    });
+    return { Data: Data.Rewards, success: true };
+  } catch (error) {
+    return { success: false, error };
+  }
+};
+
 module.exports = {
   CreateNewChallenge,
   RemoveChallenge,
   UpdateChallenge,
   ActiveChallenge,
+  ChallengeRewards,
 };
