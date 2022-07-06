@@ -51,7 +51,7 @@
 
 ### Quick Setup
 
-1. clone the repository / git clone XXXXXXXXXXXXXXXXXXXXX
+1. clone the repository / git clone https://github.com/Mohammad-DH/Balot-challenge-API.git
 2. navigate to the folder / cd Balot_challenge_API
 3. in the main directory create a .env file with `DATABASE_URL = "your connection string"` and `JWTsecret = "your jwt secret code"`
 4. go to ./prisma/schema.prisma and make sure the provider is the same as your database type

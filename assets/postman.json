@@ -34,9 +34,141 @@
 								"authentication",
 								"login"
 							]
-						}
+						},
+						"description": "this authentication is only for Admins\n\nit could be more complex ! ( not enough time )"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Login failed",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"UserName\": \"\",\n    \"Password\": \"\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/authentication/login",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"authentication",
+										"login"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "28"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1c-P9SproC19cFU5Dtcb3UDwdglGlE\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Jul 2022 17:10:53 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"login failed !\"\n}"
+						},
+						{
+							"name": "Login success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"UserName\": \"test\",\n    \"Password\": \"123456\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/authentication/login",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"authentication",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "jwtToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7IkFkbWluX0lkIjoxfSwiaWF0IjoxNjU3MDQxMDg0LCJleHAiOjE2NTcxMjc0ODR9.JV_vwdiadDODSHbJT4V5WFhouPK7-Co9GJmsWGXrM3E; Max-Age=86400; Path=/; HttpOnly; SameSite=Strict"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "31"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1f-Z+lTKVB8g3FkZ3u2/8WaK2Fs2Gc\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Jul 2022 17:11:24 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"you are login now\"\n}"
+						}
+					]
 				},
 				{
 					"name": "Signup",
@@ -63,9 +195,74 @@
 								"authentication",
 								"signup"
 							]
-						}
+						},
+						"description": "new users are all deactivate and they need to be active to be able to login\n\na active Admin should be able to make them active"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Signup",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"UserName\": \"newUser\",\n    \"Password\": \"newUser\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/authentication/signup",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"authentication",
+										"signup"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "74"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4a-1wYclrpTnQbIsYCt3UGJjBCiui4\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Jul 2022 17:12:16 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"Id\": 2,\n        \"UserName\": \"newUser\",\n        \"Password\": \"newUser\",\n        \"Active\": false\n    }\n}"
+						}
+					]
 				}
 			]
 		},
@@ -94,7 +291,8 @@
 							},
 							"response": []
 						}
-					]
+					],
+					"description": "interacting with restaurant table from user."
 				},
 				{
 					"name": "user",
@@ -118,7 +316,8 @@
 							},
 							"response": []
 						}
-					]
+					],
+					"description": "every time a new user connect to the app a hash string as user Id with the purpose of authentication will be sent to user and it should be saved on user device for later"
 				},
 				{
 					"name": "challenge",
@@ -148,7 +347,8 @@
 										"challenge",
 										"start"
 									]
-								}
+								},
+								"description": "this request will make an starting record in the data base for this user."
 							},
 							"response": []
 						},
@@ -177,7 +377,8 @@
 										"challenge",
 										"submit"
 									]
-								}
+								},
+								"description": "after that user played the challenge his score and ... will be sent to server with this request"
 							},
 							"response": []
 						},
@@ -206,9 +407,74 @@
 										"challenge",
 										"records"
 									]
-								}
+								},
+								"description": "this request will bring back 20 first record of chosen challenge plus the record of chosen user with 2 record up and down , to make it simple to use there is 2 object in the response, first one is the 20 first record marked as \"twenty\" and then there is \"around\" that includes chosen user and 2 record up and down of it , this is important that its not always 5 item in it , it could be no up or no dawn in the data base so always for finding the target ,filter them by UserId (since UserId is stored on device) and then records before chosen user are higher records and after chosen user are lower records."
 							},
-							"response": []
+							"response": [
+								{
+									"name": "records of a challenge example",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"UserId\":\"15ffz\" ,\n    \"ChallengeId\":5\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:3000/api/challenge/records",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"challenge",
+												"records"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "1731"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"6c3-1y6ALGtTPStjNBcsvc+EJcnbWLY\""
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 05 Jul 2022 17:35:45 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": {\n        \"Twenty\": {\n            \"Data\": [\n                {\n                    \"Id\": 4,\n                    \"CreatedTime\": \"2022-07-04T17:40:58.912Z\",\n                    \"UserId\": \"iielze\",\n                    \"Nickname\": \"dd\",\n                    \"ChallengeId\": 5,\n                    \"Score\": 66,\n                    \"SpentTime\": 44\n                },\n                {\n                    \"Id\": 6,\n                    \"CreatedTime\": \"2022-07-04T17:43:15.555Z\",\n                    \"UserId\": \"sefdkd\",\n                    \"Nickname\": \"ass\",\n                    \"ChallengeId\": 5,\n                    \"Score\": 52,\n                    \"SpentTime\": 30\n                },\n                {\n                    \"Id\": 5,\n                    \"CreatedTime\": \"2022-07-04T17:43:01.062Z\",\n                    \"UserId\": \"lw9ypaa\",\n                    \"Nickname\": \"333\",\n                    \"ChallengeId\": 5,\n                    \"Score\": 35,\n                    \"SpentTime\": 23\n                },\n                {\n                    \"Id\": 1,\n                    \"CreatedTime\": \"2022-07-04T03:49:49.965Z\",\n                    \"UserId\": \"15ffz\",\n                    \"Nickname\": \"bob\",\n                    \"ChallengeId\": 5,\n                    \"Score\": 15,\n                    \"SpentTime\": 25\n                },\n                {\n                    \"Id\": 10,\n                    \"CreatedTime\": \"2022-07-05T02:44:49.762Z\",\n                    \"UserId\": \"9mt2si\",\n                    \"Nickname\": \"ass4\",\n                    \"ChallengeId\": 5,\n                    \"Score\": 6,\n                    \"SpentTime\": 25\n                },\n                {\n                    \"Id\": 9,\n                    \"CreatedTime\": \"2022-07-05T02:44:36.125Z\",\n                    \"UserId\": \"dgrc0j\",\n                    \"Nickname\": \"ass3\",\n                    \"ChallengeId\": 5,\n                    \"Score\": 6,\n                    \"SpentTime\": 66\n                },\n                {\n                    \"Id\": 7,\n                    \"CreatedTime\": \"2022-07-05T02:43:40.288Z\",\n                    \"UserId\": \"lr6q8s\",\n                    \"Nickname\": \"ass1\",\n                    \"ChallengeId\": 5,\n                    \"Score\": 4,\n                    \"SpentTime\": 15\n                },\n                {\n                    \"Id\": 8,\n                    \"CreatedTime\": \"2022-07-05T02:44:12.531Z\",\n                    \"UserId\": \"ooj0s\",\n                    \"Nickname\": \"ass2\",\n                    \"ChallengeId\": 5,\n                    \"Score\": 4,\n                    \"SpentTime\": 30\n                }\n            ],\n            \"success\": true\n        },\n        \"Around\": {\n            \"Data\": [\n                {\n                    \"Id\": 6,\n                    \"CreatedTime\": \"2022-07-04T17:43:15.555Z\",\n                    \"UserId\": \"sefdkd\",\n                    \"Nickname\": \"ass\",\n                    \"ChallengeId\": 5,\n                    \"Score\": 52,\n                    \"SpentTime\": 30\n                },\n                {\n                    \"Id\": 5,\n                    \"CreatedTime\": \"2022-07-04T17:43:01.062Z\",\n                    \"UserId\": \"lw9ypaa\",\n                    \"Nickname\": \"333\",\n                    \"ChallengeId\": 5,\n                    \"Score\": 35,\n                    \"SpentTime\": 23\n                },\n                {\n                    \"Id\": 1,\n                    \"CreatedTime\": \"2022-07-04T03:49:49.965Z\",\n                    \"UserId\": \"15ffz\",\n                    \"Nickname\": \"bob\",\n                    \"ChallengeId\": 5,\n                    \"Score\": 15,\n                    \"SpentTime\": 25\n                },\n                {\n                    \"Id\": 10,\n                    \"CreatedTime\": \"2022-07-05T02:44:49.762Z\",\n                    \"UserId\": \"9mt2si\",\n                    \"Nickname\": \"ass4\",\n                    \"ChallengeId\": 5,\n                    \"Score\": 6,\n                    \"SpentTime\": 25\n                },\n                {\n                    \"Id\": 9,\n                    \"CreatedTime\": \"2022-07-05T02:44:36.125Z\",\n                    \"UserId\": \"dgrc0j\",\n                    \"Nickname\": \"ass3\",\n                    \"ChallengeId\": 5,\n                    \"Score\": 6,\n                    \"SpentTime\": 66\n                }\n            ],\n            \"success\": true\n        }\n    }\n}"
+								}
+							]
 						},
 						{
 							"name": "records of a challenge in this week",
@@ -236,9 +502,75 @@
 										"records",
 										"week"
 									]
-								}
+								},
+								"description": "this request will bring back all the records of this week\n\nthey are not stored anywhere , its just a filter ! ( preventing data duplication )"
 							},
-							"response": []
+							"response": [
+								{
+									"name": "records of a challenge in this week example",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"ChallengeId\":5\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:3000/api/challenge/records/week",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"challenge",
+												"records",
+												"week"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "1025"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"401-ZZFs0im83xFFfOizf0+HKFpAcjc\""
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 05 Jul 2022 17:51:47 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": [\n        {\n            \"Id\": 4,\n            \"CreatedTime\": \"2022-07-04T17:40:58.912Z\",\n            \"UserId\": \"iielze\",\n            \"Nickname\": \"dd\",\n            \"ChallengeId\": 5,\n            \"Score\": 66,\n            \"SpentTime\": 44\n        },\n        {\n            \"Id\": 6,\n            \"CreatedTime\": \"2022-07-04T17:43:15.555Z\",\n            \"UserId\": \"sefdkd\",\n            \"Nickname\": \"ass\",\n            \"ChallengeId\": 5,\n            \"Score\": 52,\n            \"SpentTime\": 30\n        },\n        {\n            \"Id\": 5,\n            \"CreatedTime\": \"2022-07-04T17:43:01.062Z\",\n            \"UserId\": \"lw9ypaa\",\n            \"Nickname\": \"333\",\n            \"ChallengeId\": 5,\n            \"Score\": 35,\n            \"SpentTime\": 23\n        },\n        {\n            \"Id\": 1,\n            \"CreatedTime\": \"2022-07-04T03:49:49.965Z\",\n            \"UserId\": \"15ffz\",\n            \"Nickname\": \"bob\",\n            \"ChallengeId\": 5,\n            \"Score\": 15,\n            \"SpentTime\": 25\n        },\n        {\n            \"Id\": 10,\n            \"CreatedTime\": \"2022-07-05T02:44:49.762Z\",\n            \"UserId\": \"9mt2si\",\n            \"Nickname\": \"ass4\",\n            \"ChallengeId\": 5,\n            \"Score\": 6,\n            \"SpentTime\": 25\n        },\n        {\n            \"Id\": 9,\n            \"CreatedTime\": \"2022-07-05T02:44:36.125Z\",\n            \"UserId\": \"dgrc0j\",\n            \"Nickname\": \"ass3\",\n            \"ChallengeId\": 5,\n            \"Score\": 6,\n            \"SpentTime\": 66\n        },\n        {\n            \"Id\": 7,\n            \"CreatedTime\": \"2022-07-05T02:43:40.288Z\",\n            \"UserId\": \"lr6q8s\",\n            \"Nickname\": \"ass1\",\n            \"ChallengeId\": 5,\n            \"Score\": 4,\n            \"SpentTime\": 15\n        },\n        {\n            \"Id\": 8,\n            \"CreatedTime\": \"2022-07-05T02:44:12.531Z\",\n            \"UserId\": \"ooj0s\",\n            \"Nickname\": \"ass2\",\n            \"ChallengeId\": 5,\n            \"Score\": 4,\n            \"SpentTime\": 30\n        }\n    ]\n}"
+								}
+							]
 						},
 						{
 							"name": "get a list of challenges",
@@ -255,11 +587,67 @@
 										"api",
 										"challenge"
 									]
-								}
+								},
+								"description": "this request is for showing all the available challenges for user"
 							},
-							"response": []
+							"response": [
+								{
+									"name": "get a list of challenges example",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:3000/api/challenge",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"challenge"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "664"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"298-h38pICA9IHh1CQM7YEc+6mPXmSw\""
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 05 Jul 2022 17:52:11 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": [\n        {\n            \"Id\": 2,\n            \"Name\": \"test2\",\n            \"CreatedTime\": \"2022-07-02T19:15:48.779Z\",\n            \"Start\": \"2022-07-03T19:15:00.000Z\",\n            \"End\": \"2022-07-06T19:15:00.000Z\",\n            \"Active\": true,\n            \"RestaurantId\": 1\n        },\n        {\n            \"Id\": 3,\n            \"Name\": \"test2\",\n            \"CreatedTime\": \"2022-07-03T00:46:41.676Z\",\n            \"Start\": \"2022-07-03T19:15:00.000Z\",\n            \"End\": \"2022-07-06T19:15:00.000Z\",\n            \"Active\": false,\n            \"RestaurantId\": 1\n        },\n        {\n            \"Id\": 5,\n            \"Name\": \"rrr\",\n            \"CreatedTime\": \"2022-07-03T15:26:26.784Z\",\n            \"Start\": \"2022-08-02T19:15:00.000Z\",\n            \"End\": \"2022-08-08T19:15:00.000Z\",\n            \"Active\": true,\n            \"RestaurantId\": 1\n        },\n        {\n            \"Id\": 8,\n            \"Name\": \"xxx\",\n            \"CreatedTime\": \"2022-07-04T06:49:22.668Z\",\n            \"Start\": \"2022-07-04T06:51:00.000Z\",\n            \"End\": \"2022-07-04T06:53:00.000Z\",\n            \"Active\": false,\n            \"RestaurantId\": 1\n        }\n    ]\n}"
+								}
+							]
 						}
-					]
+					],
+					"description": "interacting with challenge and record tables from user side are group together to make it simple to use and understand. ( but eventually in data access layer they will be separated )"
 				}
 			]
 		},
@@ -347,7 +735,8 @@
 							},
 							"response": []
 						}
-					]
+					],
+					"description": "controlling user table"
 				},
 				{
 					"name": "restaurant",
@@ -563,7 +952,8 @@
 						}
 					]
 				}
-			]
+			],
+			"description": "this routes are designed for only admins\n\nshould not be available in user interface\n\nall of this routes are protected with JWT authentication\n\nand for accessing them user must be logged in and the login credentials are sent to server by cookies"
 		}
 	]
 }
