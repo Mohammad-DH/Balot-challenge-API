@@ -10,7 +10,7 @@
     "type": "git",
     "url": "git+https://github.com/coreyc/express-rest-api-structure.git"
   },
-  "author": "Corey Cleary",
+  "author": "Mohammad DH",
   "license": "MIT",
   "devDependencies": {
     "nodemon": "^1.18.4"
