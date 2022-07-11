@@ -1,7 +1,7 @@
 {
-  "name": "express-rest-api-structure",
-  "version": "1.0.0",
-  "description": "",
+  "name": "Balot challenge API",
+  "version": "1.0.6",
+  "description": "a simple game server",
   "main": "app.js",
   "scripts": {
     "start": "nodemon app.js"
