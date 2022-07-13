@@ -1,5 +1,5 @@
 {
-  "name": "Balot challenge API",
+  "name": "Balot_challenge_API",
   "version": "1.0.6",
   "description": "a simple game server",
   "main": "app.js",
